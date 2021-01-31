@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "9f7f4a14-1dfa-4c78-ad26-ec3c5a9f0a52",
+		"name": "InsertUserInProcess",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DEV Insertar Usuario en Proceso",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const moment = require('moment');\r",
+							"const timestamp = moment().format(\"YYYY-MM-DDTHH:mm:ss\");\r",
+							"pm.environment.set(\"timestamp\", timestamp);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "transaction_id",
+						"type": "text",
+						"value": "{{$randomInt}}{{$randomInt}}{{$randomInt}}{{$randomInt}}"
+					},
+					{
+						"key": "timestamp",
+						"type": "text",
+						"value": "{{timestamp}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "channel_id",
+						"type": "text",
+						"value": "11"
+					},
+					{
+						"key": "accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"data\": {\r\n        \"auth_code\": 123456789,\r\n        \"client_data\": {\r\n            \"email\": \"di.floresr96@gmail.com\"\r\n        },\r\n        \"user_encrypted\": \"fewgewnfnewkfjwq\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/user/in-process",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"user",
+						"in-process"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
